@@ -16,10 +16,14 @@
         <p>Keep track of the items you're storing so it's easier to locate them later.</p>
     
         <form action="/submit-page" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username" required>
-        <input type="submit" value="Submit">
-</form>
+            <label for="itemname">Item Name:</label>
+            <input type="text" id="itemname" name="itemname" placeholder="Enter name of item" required><br>
+
+            <label for="itemdescription">Item Description:</label><br>
+            <textarea id="itemdescription" name="itemdescription" rows="4" cols="50" placeholder="Enter item description" required></textarea><br>
+            
+            <input type="submit" value="Submit">
+        </form>
     </main>
 
     <footer>
