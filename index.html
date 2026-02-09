@@ -15,9 +15,12 @@
     <main>
         <p>Keep track of the items you're storing so it's easier to locate them later.</p>
     
-        <form action="/submit-page" method="POST">
+        <form action="upload_page.php" method="post" enctype="multipart/form-data">
+            <input type="file" accept="image/*" id="fileInput">
+            <img src="#" alt="Image Preview" id="imagePreview" style="display: none; max-width: 300px; margin-top: 10px;"><br><br>
+
             <label for="itemname">Item Name:</label>
-            <input type="text" id="itemname" name="itemname" placeholder="Enter name of item" required><br>
+            <input type="text" id="itemname" name="itemname" placeholder="Enter name of item" required><br><br>
 
             <label for="itemdescription">Item Description:</label><br>
             <textarea id="itemdescription" name="itemdescription" rows="4" cols="50" placeholder="Enter item description" required></textarea><br>
