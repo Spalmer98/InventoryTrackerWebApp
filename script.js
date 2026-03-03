@@ -115,7 +115,7 @@ myForm.addEventListener('submit', async function (event) {
     const jsonData = JSON.stringify(data); //
 
     // Define your backend API endpoint URL
-    const apiEndpoint = 'https://sfnxvbajlsjtrtjqfuge.supabase.co'; // Replace with your actual endpoint
+    const apiEndpoint = 'postgresql://postgres:[YOUR-PASSWORD]@db.sfnxvbajlsjtrtjqfuge.supabase.co:5432/postgres'; // Replace with your actual endpoint
 
     try {
         // Send the data using the fetch API with a POST request
