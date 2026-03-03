@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Tracker Application</title>
+    <title>Item Info</title>
     <!-- Link to external CSS files here -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,23 +20,21 @@
         <header>
             <h1>Inventory Tracker</h1>
         </header>
-
-        <p>Keep track of the items you're storing so it's easier to locate them later.</p>
     
-        <form id="index.html" method="POST" enctype="multipart/form-data" target="_self">
+        <form id="item.html" method="POST" enctype="multipart/form-data">
 
                         <!-- Text Box for item name -->
             <label for="itemName">Item Name:</label>
-            <input type="text" id="itemName" name="itemName" placeholder="Enter name of item" onkeyup="enableSubmit()"><br><br>
+            <p>Test Filler</p>
 
                         <!-- Text Box for item description -->
             <label for="itemDescription">Item Description:</label><br>
-            <textarea id="itemDescription" name="itemDescription" rows="4" cols="50" placeholder="Enter item description"></textarea><br><br>
+            <p>Test Filler</p>
 
                         <!-- Datalist for locations -->
             <label for="locations">Location:</label>
-            <input list="locationsList" id="locations" name="locations" placeholder="Enter location" onkeyup="enableSubmit()">
-
+            <p>Test Filler</p>
+            
             <datalist id="locationsList">
                 <option value="Garage">
                 <option value="Basement">
@@ -44,11 +42,8 @@
             </datalist><br><br><br>
 
                         <!-- Input for image file -->
-            <input type="file" accept="image/*" id="fileInput">
             <img src="#" alt="Image Preview" id="imagePreview" style="display: none; max-width: 300px; margin-top: 10px;"><br><br><br>
 
-                        <!-- Submit Button -->
-            <input type="submit" onclick="submit()" id="submitBtn" disabled>
         </form>
 
         <!-- Send data to database -->

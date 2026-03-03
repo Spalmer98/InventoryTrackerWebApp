@@ -5,6 +5,12 @@ const itemName = document.getElementById('itemName'); // Name of item
 const itemDescription = document.getElementById('itemDescription'); // Descrtiption of item
 const itemLocation = document.getElementById('locations'); // Location of item
 
+
+/**********************************
+*
+*  Image Preview Handling
+*
+***********************************/
 // Add an event listener to the file input
 fileInput.addEventListener('change', function(event) {
     const files = event.target.files;
@@ -145,3 +151,23 @@ myForm.addEventListener('submit', async function (event) {
         console.error('Error:', error);
     }
 });
+
+
+/**********************************
+*
+*  Side Tab handling
+*
+***********************************/
+// /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+// function openNav() {
+//   document.getElementById("mySidenav").style.width = "250px";
+//   document.getElementById("main").style.marginLeft = "250px";
+//   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+// }
+
+// /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+// function closeNav() {
+//   document.getElementById("mySidenav").style.width = "0";
+//   document.getElementById("main").style.marginLeft = "0";
+//   document.body.style.backgroundColor = "white";
+// }
