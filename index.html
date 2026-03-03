@@ -15,18 +15,37 @@
     <main>
         <p>Keep track of the items you're storing so it's easier to locate them later.</p>
     
-        <form action="upload_page.php" method="post" enctype="multipart/form-data">
+        <form id="entryForm" method="POST" enctype="multipart/form-data">
+
+                        <!-- Text Box for item name -->
+            <label for="itemName">Item Name:</label>
+            <input type="text" id="itemName" name="itemName" placeholder="Enter name of item" onkeyup="enableSubmit()"><br><br>
+
+                        <!-- Text Box for item description -->
+            <label for="itemDescription">Item Description:</label><br>
+            <textarea id="itemDescription" name="itemDescription" rows="4" cols="50" placeholder="Enter item description"></textarea><br><br>
+
+                        <!-- Datalist for locations -->
+            <label for="locations">Location:</label>
+            <input list="locationsList" id="locations" name="locations" placeholder="Enter location" onkeyup="enableSubmit()">
+
+            <datalist id="locationsList">
+                <option value="Garage">
+                <option value="Basement">
+                <option value="Storage Unit">
+            </datalist><br><br><br>
+
+                        <!-- Input for image file -->
             <input type="file" accept="image/*" id="fileInput">
-            <img src="#" alt="Image Preview" id="imagePreview" style="display: none; max-width: 300px; margin-top: 10px;"><br><br>
+            <img src="#" alt="Image Preview" id="imagePreview" style="display: none; max-width: 300px; margin-top: 10px;"><br><br><br>
 
-            <label for="itemname">Item Name:</label>
-            <input type="text" id="itemname" name="itemname" placeholder="Enter name of item" required><br><br>
-
-            <label for="itemdescription">Item Description:</label><br>
-            <textarea id="itemdescription" name="itemdescription" rows="4" cols="50" placeholder="Enter item description" required></textarea><br>
-            
-            <input type="submit" value="Submit">
+                        <!-- Submit Button -->
+            <input type="submit" onclick="submit()" id="submit-btn" value="Submit" disabled>
         </form>
+
+        <!-- Send data to database -->
+        <p id="responseMessage"></p>
+        
     </main>
 
     <footer>
