@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website Homepage</title>
+    <title>Inventory Tracker Application</title>
     <!-- Link to external CSS files here -->
     <!--link rel="stylesheet" href="style.css"-->
 </head>
@@ -15,9 +15,9 @@
     <main>
         <p>Keep track of the items you're storing so it's easier to locate them later.</p>
     
-        <form id="entryForm" method="POST" enctype="multipart/form-data">
+        <form id="index.html" method="POST">
 
-                        <!-- Text Box for item name -->
+                        <!-- Text Box for item name enctype="multipart/form-data" -->
             <label for="itemName">Item Name:</label>
             <input type="text" id="itemName" name="itemName" placeholder="Enter name of item" onkeyup="enableSubmit()"><br><br>
 
@@ -40,7 +40,7 @@
             <img src="#" alt="Image Preview" id="imagePreview" style="display: none; max-width: 300px; margin-top: 10px;"><br><br><br>
 
                         <!-- Submit Button -->
-            <input type="submit" onclick="submit()" id="submit-btn" value="Submit" disabled>
+            <input type="submit" onclick="submit()" id="submitBtn" disabled>
         </form>
 
         <!-- Send data to database -->
@@ -49,7 +49,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Item Tracker</p>
+        <p>&copy; 2026 Inventory Tracker</p>
     </footer>
 
     <!-- Link to external JavaScript files here -->

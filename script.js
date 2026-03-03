@@ -83,7 +83,7 @@ window.onload = function() {
 
 // Disable submit button until all entry places are filled
 function enableSubmit() {
-    let submitBtn = document.getElementById('submit-btn');
+    let submitBtn = document.getElementById('submitBtn');
 
     // Check if the input field value is not empty
     if (itemName.value.trim() !== "" && itemLocation.value.trim() !== "") {
