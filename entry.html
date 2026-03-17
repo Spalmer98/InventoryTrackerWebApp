@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Tracker Application</title>
+    <!-- Link to external CSS files here -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+            <!-- Side Bar -->
+    <div id="mySidenav" class="sidenav">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+        <a href="entry.html">New Entry</a>
+        <a href="items.html">Items</a>
+        <a href="locations.html">Locations</a>
+    </div>
+
+    <div class="main">
+        <header>
+            <h1>Inventory Tracker</h1>
+        </header>
+
+        <p>Keep track of the items you're storing so it's easier to locate them later.</p>
+    
+        <form id="entryForm" method="POST" enctype="multipart/form-data">
+
+                        <!-- Text Box for item name -->
+            <label for="itemName">Item Name: <span class="required">*</span></label>
+            <input type="text" id="itemName" name="itemName" placeholder="Enter name of item" required><br><br>
+
+                        <!-- Text Box for item description -->
+            <label for="itemDescription">Item Description (optional):</label><br>
+            <textarea id="itemDescription" name="itemDescription" rows="4" cols="50" placeholder="Enter item description"></textarea><br><br>
+
+                        <!-- Datalist for locations -->
+            <label for="locations">Location: <span class="required">*</span></label>
+            <input list="locationsList" id="locations" name="locations" placeholder="Enter or select location" required>
+
+            <datalist id="locationsList">
+                <!-- Populated from Supabase + localStorage -->
+            </datalist><br><br><br>
+
+                        <!-- Input for image file -->
+            <label for="fileInput">Photo (optional):</label>
+            <input type="file" accept="image/*" id="fileInput" name="photo">
+            <img src="#" alt="Image Preview" id="imagePreview" style="display: none; max-width: 300px; margin-top: 10px;"><br><br><br>
+
+                        <!-- Submit Button -->
+            <button type="submit" id="submitBtn">Save entry</button>
+        </form>
+
+        <!-- Send data to database -->
+        <p id="responseMessage"></p>
+        
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Inventory Tracker</p>
+    </footer>
+
+    <!-- Link to external JavaScript files here -->
+    <script src="script.js"></script>
+    <script type="module" src="entry.js"></script>
+</body>
+</html>

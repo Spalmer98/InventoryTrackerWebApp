@@ -1,66 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Tracker Application</title>
-    <!-- Link to external CSS files here -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventory Tracker – Sign in</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .auth-box { max-width: 360px; margin: 2rem 0; }
+    .auth-box input, .auth-box button { display: block; margin: 0.5rem 0; width: 100%; box-sizing: border-box; }
+    .auth-box .message { margin: 0.5rem 0; }
+    .auth-box .message.error { color: #c00; }
+    .auth-box button { margin-right: 0.5rem; width: auto; }
+    .auth-links { margin-top: 1rem; }
+    .auth-links a { margin-right: 1rem; }
+  </style>
 </head>
 <body>
-            <!-- Side Bar -->
-    <div id="mySidenav" class="sidenav">
-        <a href="search.html">Search</a>
-        <a href="index.html">New Entry</a>
-        <a href="items.html">Items</a>
-        <a href="locations.html">Locations</a>
-    </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="index.html">Home</a>
+    <a href="search.html">Search</a>
+    <a href="entry.html">New Entry</a>
+    <a href="items.html">Items</a>
+    <a href="locations.html">Locations</a>
+  </div>
 
-    <div class="main">
-        <header>
-            <h1>Inventory Tracker</h1>
-        </header>
+  <div class="main">
+    <header>
+      <h1>Inventory Tracker</h1>
+    </header>
 
-        <p>Keep track of the items you're storing so it's easier to locate them later.</p>
-    
-        <form id="index.html" method="POST" enctype="multipart/form-data" target="_self">
+    <p>Create an account or sign in to manage your inventory.</p>
 
-                        <!-- Text Box for item name -->
-            <label for="itemName">Item Name:</label>
-            <input type="text" id="itemName" name="itemName" placeholder="Enter name of item" onkeyup="enableSubmit()"><br><br>
+    <section id="auth" class="auth-box">
+      <!-- Filled by supabaseClient.js -->
+    </section>
 
-                        <!-- Text Box for item description -->
-            <label for="itemDescription">Item Description:</label><br>
-            <textarea id="itemDescription" name="itemDescription" rows="4" cols="50" placeholder="Enter item description"></textarea><br><br>
+    <section id="post-form-container">
+      <!-- When signed in: links to New Entry and Items -->
+    </section>
 
-                        <!-- Datalist for locations -->
-            <label for="locations">Location:</label>
-            <input list="locationsList" id="locations" name="locations" placeholder="Enter location" onkeyup="enableSubmit()">
+    <section id="posts-list" aria-hidden="true"></section>
+  </div>
 
-            <datalist id="locationsList">
-                <option value="Garage">
-                <option value="Basement">
-                <option value="Storage Unit">
-            </datalist><br><br><br>
+  <footer>
+    <p>&copy; 2026 Inventory Tracker</p>
+  </footer>
 
-                        <!-- Input for image file -->
-            <input type="file" accept="image/*" id="fileInput">
-            <img src="#" alt="Image Preview" id="imagePreview" style="display: none; max-width: 300px; margin-top: 10px;"><br><br><br>
-
-                        <!-- Submit Button -->
-            <input type="submit" onclick="submit()" id="submitBtn" disabled>
-        </form>
-
-        <!-- Send data to database -->
-        <p id="responseMessage"></p>
-        
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Inventory Tracker</p>
-    </footer>
-
-    <!-- Link to external JavaScript files here -->
-    <script src="script.js"></script>
+  <script type="module" src="supabaseClient.js"></script>
 </body>
 </html>
