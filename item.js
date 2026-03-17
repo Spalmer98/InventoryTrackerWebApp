@@ -97,10 +97,10 @@ function renderEditForm(entry) {
         imageFile,
         currentImagePath: entry.image_path,
       });
-      msgEl.textContent = 'Entry updated.';
+      msgEl.textContent = 'Entry updated. Returning to Inventory…';
       msgEl.style.color = 'green';
       msgEl.hidden = false;
-      setTimeout(() => renderDetailView(updated), 800);
+      setTimeout(() => { window.location.href = 'items.html'; }, 600);
     } catch (err) {
       msgEl.textContent = err.message || 'Update failed.';
       msgEl.style.color = '#c00';
