@@ -39,9 +39,9 @@ async function render() {
     container.innerHTML = `
       <article class="item-detail">
         <h2>${escapeHtml(entry.name)}</h2>
-        <p><strong>Location:</strong> ${escapeHtml(entry.location)}</p>
+        ${entry.image_url ? `<img src="${escapeHtml(entry.image_url)}" alt="${escapeHtml(entry.name)}" class="item-detail-img" loading="lazy" />` : '<p class="item-no-photo">No photo</p>'}
+        <p class="item-location"><strong>Stored in:</strong> ${escapeHtml(entry.location || '—')}</p>
         ${entry.description ? `<p><strong>Description:</strong> ${escapeHtml(entry.description)}</p>` : ''}
-        ${entry.image_url ? `<img src="${escapeHtml(entry.image_url)}" alt="" class="item-detail-img" loading="lazy" />` : ''}
       </article>
     `;
   } catch (err) {
