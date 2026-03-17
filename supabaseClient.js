@@ -351,11 +351,12 @@ function escapeHtml(s) {
 
 // --- Init UI when DOM ready (sign-in page only; do not run on signup.html) ---
 
-const path = typeof window !== 'undefined' ? (window.location.pathname || '') : '';
-const isSignUpPage = path.endsWith('signup.html');
-
 document.addEventListener('DOMContentLoaded', async () => {
-  if (isSignUpPage) return;
+  // Skip if this is the sign-up page (check path and presence of sign-up form)
+  const path = window.location.pathname || '';
+  if (path.endsWith('signup.html') || document.getElementById('signup-form')) {
+    return;
+  }
 
   const authEl = document.getElementById('auth');
   const postFormEl = document.getElementById('post-form-container');
