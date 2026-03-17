@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const user = await getCurrentUser();
   if (user && postFormEl) {
-    postFormEl.innerHTML = '<p><a href="entry.html">New Entry</a> | <a href="items.html">View Items</a></p>';
+    postFormEl.innerHTML = '<p><a href="entry.html">New Entry</a> | <a href="items.html">View Inventory</a></p>';
   }
   if (user && postsListEl) {
     postsListEl.innerHTML = '';
