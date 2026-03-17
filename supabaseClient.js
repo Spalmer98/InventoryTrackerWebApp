@@ -62,6 +62,18 @@ export function getImageUrl(path) {
   return data.publicUrl;
 }
 
+/** Signed URL for storage (works with private buckets; 1 hour expiry). Use for displaying images. */
+const SIGNED_URL_EXPIRY = 3600;
+
+export async function getImageSignedUrl(path) {
+  if (!path) return null;
+  const { data, error } = await supabase.storage
+    .from(STORAGE_BUCKET)
+    .createSignedUrl(path, SIGNED_URL_EXPIRY);
+  if (error) return null;
+  return data?.signedUrl ?? data?.signedURL ?? null;
+}
+
 // --- Database: posts (title, body, image_path) [legacy] ---
 
 export async function createPost({ title, body, imageFile }) {
@@ -166,7 +178,8 @@ export async function createEntry({ name, description, location, imageFile }) {
     .single();
 
   if (error) throw error;
-  const row = { ...data, location: data.locations?.name ?? null, image_url: getImageUrl(imagePath) };
+  const imageUrl = imagePath ? await getImageSignedUrl(imagePath) : null;
+  const row = { ...data, location: data.locations?.name ?? null, image_url: imageUrl };
   delete row.locations;
   return row;
 }
@@ -183,11 +196,15 @@ export async function getMyEntries() {
 
   if (error) throw error;
 
-  return (data || []).map((e) => {
+  const entries = (data || []).map((e) => {
     const location = e.locations?.name ?? null;
     const { locations: _, ...rest } = e;
-    return { ...rest, location, image_url: getImageUrl(e.image_path) };
+    return { ...rest, location, image_url: null };
   });
+  for (const e of entries) {
+    e.image_url = e.image_path ? await getImageSignedUrl(e.image_path) : null;
+  }
+  return entries;
 }
 
 export async function getMyLocations() {
@@ -219,7 +236,8 @@ export async function getEntryById(id) {
   if (!data) return null;
   const location = data.locations?.name ?? null;
   const { locations: _, ...rest } = data;
-  return { ...rest, location, image_url: getImageUrl(data.image_path) };
+  const imageUrl = data.image_path ? await getImageSignedUrl(data.image_path) : null;
+  return { ...rest, location, image_url: imageUrl };
 }
 
 export async function deleteEntry(id) {
