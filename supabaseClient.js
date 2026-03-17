@@ -240,6 +240,38 @@ export async function getEntryById(id) {
   return { ...rest, location, image_url: imageUrl };
 }
 
+export async function updateEntry(id, { name, description, location, imageFile, currentImagePath }) {
+  const user = await getCurrentUser();
+  if (!user) throw new Error('Not logged in');
+  if (!name || !location) throw new Error('Item name and location are required.');
+
+  let imagePath = currentImagePath ?? null;
+  if (imageFile && imageFile.size > 0) {
+    imagePath = await uploadImage(imageFile);
+  }
+
+  const locationId = await getOrCreateLocationId(user.id, location);
+
+  const { data, error } = await supabase
+    .from('inventory_entries')
+    .update({
+      name: name.trim(),
+      description: (description || '').trim() || null,
+      location_id: locationId,
+      image_path: imagePath,
+    })
+    .eq('id', id)
+    .eq('user_id', user.id)
+    .select('*, locations(name)')
+    .single();
+
+  if (error) throw error;
+  const imageUrl = data.image_path ? await getImageDisplayUrl(data.image_path) : null;
+  const row = { ...data, location: data.locations?.name ?? null, image_url: imageUrl };
+  delete row.locations;
+  return row;
+}
+
 export async function deleteEntry(id) {
   const user = await getCurrentUser();
   if (!user) throw new Error('Not logged in');
