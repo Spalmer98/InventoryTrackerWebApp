@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventory Tracker – Sign up</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .auth-box { max-width: 360px; margin: 2rem 0; }
+    .auth-box input, .auth-box button { display: block; margin: 0.5rem 0; width: 100%; box-sizing: border-box; }
+    .auth-box .auth-password-row { display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0; }
+    .auth-box .auth-password-row input { flex: 1; margin: 0; min-width: 0; }
+    .auth-box .toggle-label { display: flex; align-items: center; gap: 0.35rem; margin: 0; white-space: nowrap; cursor: pointer; font-weight: normal; }
+    .auth-box .toggle-label input { width: auto; margin: 0; }
+    .auth-box .message { margin: 0.5rem 0; }
+    .auth-box .message.error { color: #c00; }
+    .auth-box button { margin-right: 0.5rem; width: auto; }
+    .auth-box #auth-buttons { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; }
+    .auth-box .auth-link { color: #0066cc; text-decoration: underline; }
+    .auth-box .auth-link:hover { color: #004499; }
+  </style>
+</head>
+<body>
+  <div id="mySidenav" class="sidenav">
+    <a href="index.html">Home</a>
+    <a href="search.html">Search</a>
+    <a href="entry.html">New Entry</a>
+    <a href="items.html">Items</a>
+    <a href="locations.html">Locations</a>
+  </div>
+
+  <div class="main">
+    <header>
+      <h1>Inventory Tracker</h1>
+    </header>
+
+    <p>Create an account. Your email and password are stored securely.</p>
+
+    <section id="auth" class="auth-box">
+      <form id="signup-form">
+        <input type="email" id="auth-email" placeholder="Email" required />
+        <div class="auth-password-row">
+          <input type="password" id="auth-password" placeholder="Password" required />
+          <label class="toggle-label">
+            <input type="checkbox" id="auth-show-passwords" /> Show
+          </label>
+        </div>
+        <input type="password" id="auth-password-confirm" placeholder="Confirm password" required />
+        <div id="auth-buttons">
+          <button type="submit" id="btn-sign-up">Sign up</button>
+          <a href="index.html" class="auth-link">Sign in</a>
+        </div>
+      </form>
+      <p id="auth-message" class="message" hidden></p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Inventory Tracker</p>
+  </footer>
+
+  <script type="module" src="signup.js"></script>
+</body>
+</html>
