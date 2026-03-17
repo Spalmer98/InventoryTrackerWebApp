@@ -141,6 +141,24 @@ body {
 .item-edit-btn:hover {
   background: #818181;
 }
+.item-actions {
+  margin-top: 1rem;
+}
+.item-actions .item-edit-btn {
+  margin-right: 0.5rem;
+}
+.item-delete-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #b32d2e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+}
+.item-delete-btn:hover {
+  background: #8e2424;
+}
 .item-edit-form label {
   display: block;
   margin-top: 0.5rem;

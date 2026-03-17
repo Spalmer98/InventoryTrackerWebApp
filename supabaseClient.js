@@ -288,6 +288,15 @@ export async function deleteEntry(id) {
   const user = await getCurrentUser();
   if (!user) throw new Error('Not logged in');
 
+  const { data: entry, error: fetchError } = await supabase
+    .from('inventory_entries')
+    .select('image_path')
+    .eq('id', id)
+    .eq('user_id', user.id)
+    .maybeSingle();
+
+  if (fetchError) throw fetchError;
+
   const { error } = await supabase
     .from('inventory_entries')
     .delete()
@@ -295,5 +304,9 @@ export async function deleteEntry(id) {
     .eq('user_id', user.id);
 
   if (error) throw error;
+
+  if (entry?.image_path) {
+    await supabase.storage.from(STORAGE_BUCKET).remove([entry.image_path]);
+  }
 }
 

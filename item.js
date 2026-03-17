@@ -6,6 +6,7 @@ import {
   getEntryById,
   getMyLocations,
   updateEntry,
+  deleteEntry,
 } from './supabaseClient.js';
 
 const container = document.getElementById('item-container');
@@ -25,10 +26,24 @@ function renderDetailView(entry) {
       ${entry.image_url ? `<img src="${escapeHtml(entry.image_url)}" alt="${escapeHtml(entry.name)}" class="item-detail-img" loading="lazy" />` : '<p class="item-no-photo">No photo</p>'}
       <p class="item-location"><strong>Stored in:</strong> ${escapeHtml(entry.location || '—')}</p>
       ${entry.description ? `<p><strong>Description:</strong> ${escapeHtml(entry.description)}</p>` : ''}
-      <p><button type="button" id="item-edit-btn" class="item-edit-btn">Edit</button></p>
+      <p class="item-actions">
+        <button type="button" id="item-edit-btn" class="item-edit-btn">Edit</button>
+        <button type="button" id="item-delete-btn" class="item-delete-btn">Delete</button>
+      </p>
     </article>
   `;
   container.querySelector('#item-edit-btn').onclick = () => renderEditForm(entry);
+  container.querySelector('#item-delete-btn').onclick = () => handleDelete(entry);
+}
+
+async function handleDelete(entry) {
+  if (!confirm(`Delete "${entry.name}"? This cannot be undone.`)) return;
+  try {
+    await deleteEntry(entry.id);
+    window.location.href = 'items.html';
+  } catch (err) {
+    alert(err.message || 'Could not delete item.');
+  }
 }
 
 function renderEditForm(entry) {
