@@ -17,11 +17,13 @@ function showMessage(text, isError = false) {
   msgEl.hidden = false;
 }
 
-// If already signed in, redirect to home
+// If already signed in, redirect to home (so they don't create a second account)
 getCurrentUser().then((user) => {
   if (user) {
-    window.location.href = 'index.html';
+    window.location.replace('index.html');
   }
+}).catch(() => {
+  // Ignore auth errors so sign-up page still loads for new users
 });
 
 if (showCheckbox) {

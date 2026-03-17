@@ -271,7 +271,7 @@ async function renderAuth(container) {
         </div>
         <div id="auth-buttons">
             <button type="button" id="btn-sign-in">Sign in</button>
-            <a href="signup.html" class="auth-link">Sign up</a>
+            <a href="signup.html" class="auth-link" id="auth-signup-link">Sign up</a>
         </div>
     </div>
     <p id="auth-message" class="message" hidden></p>
@@ -281,6 +281,14 @@ async function renderAuth(container) {
   const emailEl = container.querySelector('#auth-email');
   const passEl = container.querySelector('#auth-password');
   const showCheckbox = container.querySelector('#auth-show-passwords');
+  const signUpLink = container.querySelector('#auth-signup-link');
+
+  if (signUpLink) {
+    signUpLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = 'signup.html';
+    });
+  }
 
   showCheckbox.addEventListener('change', () => {
     passEl.type = showCheckbox.checked ? 'text' : 'password';
