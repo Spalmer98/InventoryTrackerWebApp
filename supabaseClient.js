@@ -74,6 +74,14 @@ export async function getImageSignedUrl(path) {
   return data?.signedUrl ?? data?.signedURL ?? null;
 }
 
+/** Get a display URL for an image: signed URL if available, otherwise public URL (for public buckets). */
+export async function getImageDisplayUrl(path) {
+  if (!path) return null;
+  const signed = await getImageSignedUrl(path);
+  if (signed) return signed;
+  return getImageUrl(path);
+}
+
 // --- Database: posts (title, body, image_path) [legacy] ---
 
 export async function createPost({ title, body, imageFile }) {
