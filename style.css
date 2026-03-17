@@ -35,6 +35,30 @@ body {
   .sidenav a {font-size: 18px;}
 }
 
+/* Inventory search (items page) */
+.inventory-search-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: #333;
+}
+.inventory-search {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.inventory-search:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
 /* Inventory list (items page) */
 .inventory-location {
   margin-bottom: 2rem;
