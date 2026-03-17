@@ -274,7 +274,11 @@ export async function updateEntry(id, { name, description, location, imageFile, 
     .single();
 
   if (error) throw error;
-  const imageUrl = data.image_path ? await getImageDisplayUrl(data.image_path) : null;
+  let imageUrl = null;
+  if (data.image_path) {
+    const signed = await getImageSignedUrl(data.image_path);
+    imageUrl = signed || getImageUrl(data.image_path);
+  }
   const row = { ...data, location: data.locations?.name ?? null, image_url: imageUrl };
   delete row.locations;
   return row;
