@@ -8,9 +8,16 @@
   <style>
     .auth-box { max-width: 360px; margin: 2rem 0; }
     .auth-box input, .auth-box button { display: block; margin: 0.5rem 0; width: 100%; box-sizing: border-box; }
+    .auth-box .auth-password-row { display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0; }
+    .auth-box .auth-password-row input { flex: 1; margin: 0; min-width: 0; }
+    .auth-box .toggle-label { display: flex; align-items: center; gap: 0.35rem; margin: 0; white-space: nowrap; cursor: pointer; font-weight: normal; }
+    .auth-box .toggle-label input { width: auto; margin: 0; }
     .auth-box .message { margin: 0.5rem 0; }
     .auth-box .message.error { color: #c00; }
     .auth-box button { margin-right: 0.5rem; width: auto; }
+    .auth-box #auth-buttons { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; }
+    .auth-box .auth-link { background: none; border: none; padding: 0; color: #0066cc; cursor: pointer; text-decoration: underline; font-size: inherit; }
+    .auth-box .auth-link:hover { color: #004499; }
     .auth-links { margin-top: 1rem; }
     .auth-links a { margin-right: 1rem; }
   </style>

@@ -263,13 +263,20 @@ async function renderAuth(container) {
   container.innerHTML = `
     <div id="auth-form">
         <input type="email" id="auth-email" placeholder="Email" />
-        <input type="password" id="auth-password" placeholder="Password" />
-        <input type="password" id="auth-password-confirm" placeholder="Confirm password" />
-        <label class="toggle-label">
-            <input type="checkbox" id="auth-show-passwords" /> Show passwords
-        </label>
-        <button type="button" id="btn-sign-in">Sign in</button>
-        <button type="button" id="btn-sign-up">Sign up</button>
+        <div class="auth-password-row">
+            <input type="password" id="auth-password" placeholder="Password" />
+            <label class="toggle-label">
+                <input type="checkbox" id="auth-show-passwords" /> Show
+            </label>
+        </div>
+        <div id="auth-confirm-wrap" style="display: none;">
+            <input type="password" id="auth-password-confirm" placeholder="Confirm password" />
+        </div>
+        <div id="auth-buttons">
+            <button type="button" id="btn-sign-in">Sign in</button>
+            <button type="button" id="btn-sign-up" style="display: none;">Sign up</button>
+            <button type="button" id="auth-swap-link" class="auth-link">Sign up</button>
+        </div>
     </div>
     <p id="auth-message" class="message" hidden></p>
   `;
@@ -277,17 +284,44 @@ async function renderAuth(container) {
   const msgEl = container.querySelector('#auth-message');
   const emailEl = container.querySelector('#auth-email');
   const passEl = container.querySelector('#auth-password');
+  const confirmWrap = container.querySelector('#auth-confirm-wrap');
   const confirmEl = container.querySelector('#auth-password-confirm');
   const showCheckbox = container.querySelector('#auth-show-passwords');
+  const btnSignIn = container.querySelector('#btn-sign-in');
+  const btnSignUp = container.querySelector('#btn-sign-up');
+  const swapLink = container.querySelector('#auth-swap-link');
 
-  // Toggle visibility of password and confirm (checkbox controls both)
+  function setSignInMode() {
+    confirmWrap.style.display = 'none';
+    btnSignIn.style.display = '';
+    btnSignUp.style.display = 'none';
+    swapLink.textContent = 'Sign up';
+    swapLink.style.display = '';
+  }
+
+  function setSignUpMode() {
+    confirmWrap.style.display = '';
+    btnSignIn.style.display = 'none';
+    btnSignUp.style.display = '';
+    swapLink.textContent = 'Sign in instead';
+    swapLink.style.display = '';
+  }
+
+  swapLink.addEventListener('click', () => {
+    if (swapLink.textContent === 'Sign up') {
+      setSignUpMode();
+    } else {
+      setSignInMode();
+    }
+  });
+
   showCheckbox.addEventListener('change', () => {
     const type = showCheckbox.checked ? 'text' : 'password';
     passEl.type = type;
     confirmEl.type = type;
   });
 
-  container.querySelector('#btn-sign-in').onclick = async () => {
+  btnSignIn.onclick = async () => {
     try {
       await signIn(emailEl.value.trim(), passEl.value);
       location.reload();
@@ -295,7 +329,8 @@ async function renderAuth(container) {
       showMessage(msgEl, e.message, true);
     }
   };
-  container.querySelector('#btn-sign-up').onclick = async () => {
+
+  btnSignUp.onclick = async () => {
     const password = passEl.value;
     const confirm = confirmEl.value;
     if (!password) {
